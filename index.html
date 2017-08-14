@@ -14,17 +14,52 @@
 		}
 	</script>
 	<script>
-		function go() {
-			//do an actual thing
-		}
+		var mem = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
+		function resetmem() {
+			mem = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
+		};
+		function go(num) {
+			var textfield = document.getElementById('in');
+			var form = document.getElementById('forms');
+			form.style.display = 'none';
+			if (num == 1) {
+				var script = importt(textfield.value);
+				textfield.value = '';
+				resetmem();
+				parse(script);
+			}
+		};
+		function importt(text) {
+			res = text.split(';');
+			res.splice(res.length - 1, 1);
+			return res;
+		};
+		function parse(code) {
+			for (i = 0; i < code.length; i++) {
+				if (code[i] == 'out') {
+					i++;
+					if (code[i][1] == '"') {
+						log(code[i].substring(1, code[i].length - 1));
+					} else {
+						log(mem[code[i]]);
+					}
+				} else if (code[i] == 'add') {
+					//continue
+				}
+			}
+		};
+		function log(text) {
+			document.getElementById('console').innerHTML += '<br/>' + text;
+		};
 	</script>
 </head>
 <body>
 	<main>
 	<h1>JoshieScript Online</h1>
-	<div id="form"><input type="text" id="in" placeholder="Paste exported code"><button onclick="go();">Submit</button></div>
-	<div id="console">
-	</div>
+	<p><!-- description --></p>
+	<p>Reload the page if you want to use it again</p>
+	<div id="forms"><input type="text" id="in" placeholder="Paste exported code"><button onclick="go(1);">Submit</button></div>
+	<div id="console" style="font-family:monospace"></div>
 	</main>
 </body>
 </html>
