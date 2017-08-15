@@ -35,21 +35,203 @@
 			return res;
 		};
 		function parse(code) {
-			for (i = 0; i < code.length; i++) {
-				if (code[i] == 'out') {
-					i++;
-					if (code[i][1] == '"') {
-						log(code[i].substring(1, code[i].length - 1));
-					} else {
-						log(mem[code[i]]);
+			var tmp = [];
+			var temp = '';
+			var temp2 = '';
+			looping: {
+				for (i = 0; i < code.length; i++) {
+					switch (code[i]) {
+						case 'out':
+							i++;
+							if (code[i][1] == '"') {
+								log(code[i].substring(1, code[i].length - 1));
+							} else {
+								log(mem[code[i]]);
+							}
+							break;
+						case 'add':
+							tmp = [];
+							i++;
+							tmp.push(code[i]);
+							i++;
+							tmp.push(code[i]);
+							i++;
+							tmp.push(code[i]);
+							if (tmp[1][1] == '/') {
+								temp = tmp[1].substring(1);
+								temp = mem[temp];
+							} else {
+								temp = tmp[1];
+							}
+							if (tmp[2][1] == '/') {
+								temp2 = tmp[2].substring(1);
+								temp2 = mem[temp2];
+							} else {
+								temp2 = tmp[2];
+							}
+							mem[tmp[3]] = temp + temp2;
+							break;
+						case 'sub':
+							tmp = [];
+							i++;
+							tmp.push(code[i]);
+							i++;
+							tmp.push(code[i]);
+							i++;
+							tmp.push(code[i]);
+							if (tmp[1][1] == '/') {
+								temp = tmp[1].substring(1);
+								temp = mem[temp];
+							} else {
+								temp = tmp[1];
+							}
+							if (tmp[2][1] == '/') {
+								temp2 = tmp[2].substring(1);
+								temp2 = mem[temp2];
+							} else {
+								temp2 = tmp[2];
+							}
+							mem[tmp[3]] = temp - temp2;
+							break;
+						case 'mult':
+							tmp = [];
+							i++;
+							tmp.push(code[i]);
+							i++;
+							tmp.push(code[i]);
+							i++;
+							tmp.push(code[i]);
+							if (tmp[1][1] == '/') {
+								temp = tmp[1].substring(1);
+								temp = mem[temp];
+							} else {
+								temp = tmp[1];
+							}
+							if (tmp[2][1] == '/') {
+								temp2 = tmp[2].substring(1);
+								temp2 = mem[temp2];
+							} else {
+								temp2 = tmp[2];
+							}
+							mem[tmp[3]] = temp * temp2;
+							break;
+						case 'div':
+							tmp = [];
+							i++;
+							tmp.push(code[i]);
+							i++;
+							tmp.push(code[i]);
+							i++;
+							tmp.push(code[i]);
+							if (tmp[1][1] == '/') {
+								temp = tmp[1].substring(1);
+								temp = mem[temp];
+							} else {
+								temp = tmp[1];
+							}
+							if (tmp[2][1] == '/') {
+								temp2 = tmp[2].substring(1);
+								temp2 = mem[temp2];
+							} else {
+								temp2 = tmp[2];
+							}
+							mem[tmp[3]] = temp / temp2;
+							break;
+						case 'mov':
+							tmp = [];
+							i++;
+							tmp.push(code[i]);
+							i++;
+							tmp.push(code[i]);
+							mem[tmp[1]] = mem[tmp[2]];
+							break;
+						case 'set':
+							tmp = [];
+							i++;
+							tmp.push(code[i]);
+							i++;
+							tmp.push(code[i]);
+							mem[tmp[1]] = tmp[2];
+							break;
+						case 'jump':
+							tmp = [];
+							i++;
+							tmp.push(code[i]);
+							i = tmp[1];
+							break;
+						case 'input':
+							tmp = [];
+							i++;
+							tmp.push(code[i]);
+							i++;
+							tmp.push(code[i]);
+							mem[tmp[2]] = prompt(tmp[1]);
+							break;
+						case 'wait':
+							error('wait is not supported');
+							break;
+						case 'if':
+							tmp = [];
+							i++;
+							tmp.push(code[i]);
+							i++;
+							tmp.push(code[i]);
+							i++;
+							tmp.push(code[i]);
+							if (tmp[1][1] == '/') {
+								temp = tmp[1].substring(1);
+								temp = mem[temp];
+							} else {
+								temp = tmp[1];
+							}
+							if (tmp[3][1] == '/') {
+								temp2 = tmp[3].substring(1);
+								temp2 = mem[temp2];
+							} else {
+								temp2 = tmp[3];
+							}
+							switch (tmp[2]) {
+								case '=':
+									if (!(temp == temp2)) {
+										while (!(code[i] == 'end')) {
+											i++;
+										}
+									}
+									break;
+								case '>':
+									if (!(temp > temp2)) {
+										while (!(code[i] == 'end')) {
+											i++;
+										}
+									}
+									break;
+								case '<':
+									if (!(temp == temp2)) {
+										while (!(code[i] == 'end')) {
+											i++;
+										}
+									}
+									break;
+								default:
+									error('[IF] Syntax error');
+									break looping;
+							}
+						case 'end':
+							break;
+						case '':
+							break;
+						default:
+							error('Syntax error');
+							break looping;
 					}
-				} else if (code[i] == 'add') {
-					//continue
 				}
 			}
 		};
 		function log(text) {
 			document.getElementById('console').innerHTML += '<br/>' + text;
+		};
+		function error(text) {
+			console.log(text);
 		};
 	</script>
 </head>
@@ -57,6 +239,7 @@
 	<main>
 	<h1>JoshieScript Online</h1>
 	<p><!-- description --></p>
+	<p>wait is not supported, sorry</p>
 	<p>Reload the page if you want to use it again</p>
 	<div id="forms"><input type="text" id="in" placeholder="Paste exported code"><button onclick="go(1);">Submit</button></div>
 	<div id="console" style="font-family:monospace"></div>
