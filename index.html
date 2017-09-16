@@ -44,7 +44,7 @@
 						case 'out':
 							i++;
 							if (code[i][0] == '"') {
-								log(code[i].substring(0, code[i].length - 1));
+								log(code[i].substring(1, code[i].length - 1));
 							} else {
 								log(mem[code[i]-1]);
 							}
@@ -58,13 +58,13 @@
 							i++;
 							tmp.push(code[i]);
 							if (tmp[0][0] == '/') {
-								temp = tmp[0].substring(0);
+								temp = tmp[0].substring(1);
 								temp = mem[temp-1];
 							} else {
 								temp = tmp[0];
 							}
 							if (tmp[1][0] == '/') {
-								temp2 = tmp[1].substring(0);
+								temp2 = tmp[1].substring(1);
 								temp2 = mem[temp2-1];
 							} else {
 								temp2 = tmp[1];
@@ -80,13 +80,13 @@
 							i++;
 							tmp.push(code[i]);
 							if (tmp[0][0] == '/') {
-								temp = tmp[0].substring(0);
+								temp = tmp[0].substring(1);
 								temp = mem[temp-1];
 							} else {
 								temp = tmp[0];
 							}
 							if (tmp[1][0] == '/') {
-								temp2 = tmp[1].substring(0);
+								temp2 = tmp[1].substring(1);
 								temp2 = mem[temp2-1];
 							} else {
 								temp2 = tmp[1];
@@ -102,13 +102,13 @@
 							i++;
 							tmp.push(code[i]);
 							if (tmp[0][0] == '/') {
-								temp = tmp[0].substring(0);
+								temp = tmp[0].substring(1);
 								temp = mem[temp-1];
 							} else {
 								temp = tmp[0];
 							}
 							if (tmp[1][0] == '/') {
-								temp2 = tmp[1].substring(0);
+								temp2 = tmp[1].substring(1);
 								temp2 = mem[temp2-1];
 							} else {
 								temp2 = tmp[1];
@@ -124,13 +124,13 @@
 							i++;
 							tmp.push(code[i]);
 							if (tmp[0][0] == '/') {
-								temp = tmp[0].substring(0);
+								temp = tmp[0].substring(1);
 								temp = mem[temp-1];
 							} else {
 								temp = tmp[0];
 							}
 							if (tmp[1][0] == '/') {
-								temp2 = tmp[1].substring(0);
+								temp2 = tmp[1].substring(1);
 								temp2 = mem[temp2-1];
 							} else {
 								temp2 = tmp[1];
@@ -179,13 +179,13 @@
 							i++;
 							tmp.push(code[i]);
 							if (tmp[0][0] == '/') {
-								temp = tmp[0].substring(0);
+								temp = tmp[0].substring(1);
 								temp = mem[temp-1];
 							} else {
 								temp = tmp[0];
 							}
 							if (tmp[2][0] == '/') {
-								temp2 = tmp[2].substring(0);
+								temp2 = tmp[2].substring(1);
 								temp2 = mem[temp2-1];
 							} else {
 								temp2 = tmp[2];
