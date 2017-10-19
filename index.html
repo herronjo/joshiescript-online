@@ -34,6 +34,12 @@
 			res.splice(res.length - 1, 1);
 			return res;
 		};
+		function sleep(time) {
+			var currentTime = new Date().getTime();
+			while (currentTime + time >= new Date().getTime()) {
+				
+			}
+		}
 		function parse(code) {
 			var tmp = [];
 			var temp = '';
@@ -168,7 +174,10 @@
 							mem[tmp[1]-1] = prompt(tmp[0]);
 							break;
 						case 'wait':
-							error('wait is not supported');
+							tmp = [];
+							i++;
+							sleep(code[i].parseInt()*1000);
+							//error('wait is not supported');
 							break;
 						case 'if':
 							tmp = [];
