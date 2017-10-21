@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="../savaka-style.css">
+	<link rel="stylesheet" type="text/css" href="JoshieScript%20Online%20-%20Savaka%27s%20GitHub%20Page_files/savaka-style.css">
 	<title>JoshieScript Online - Savaka's GitHub Page</title>
-	<script src="../templategenerator.js"></script>
+	<script src="JoshieScript%20Online%20-%20Savaka%27s%20GitHub%20Page_files/templategenerator.js"></script>
 	<script>
 		var tg = {
 			levels: 1,
@@ -163,7 +163,7 @@
 							tmp = [];
 							i++;
 							tmp.push(code[i]);
-							i = tmp[0];
+							i = tmp[0]-1;
 							break;
 						case 'input':
 							tmp = [];
@@ -176,7 +176,7 @@
 						case 'wait':
 							tmp = [];
 							i++;
-							sleep(code[i].parseInt()*1000);
+							sleep(code[i]*1000);
 							//error('wait is not supported');
 							break;
 						case 'if':
@@ -222,7 +222,7 @@
 									}
 									break;
 								default:
-									error('[IF] Syntax error');
+									error('[IF] Syntax error: '.concat(i));
 									break looping;
 							}
 						case 'end':
@@ -230,7 +230,7 @@
 						case '':
 							break;
 						default:
-							error('Syntax error');
+							error('Syntax error: '.concat(i));
 							break looping;
 					}
 				}
@@ -244,13 +244,14 @@
 		};
 	</script>
 </head>
-<body>
+<body><header><a href="https://savaka2.github.io/index.html"><img src="JoshieScript%20Online%20-%20Savaka%27s%20GitHub%20Page_files/savakafull-small.PNG" style="display:inline;"></a><span style="display:inline; font-size:2em; font-weight:normal; vertical-align:50%;"> <a href="javascript:switchSite();">→ JoshieScript Online</a></span> <img src="JoshieScript%20Online%20-%20Savaka%27s%20GitHub%20Page_files/home-button-selected.png"><a href="https://github.com/savaka2/joshiescript-online"><img src="JoshieScript%20Online%20-%20Savaka%27s%20GitHub%20Page_files/gh.png" style="display:inline;"></a></header><div id="siteswitcher" style="display: none;"><h1>Switch Site</h1><p>GitHub projects:</p><ul id="ssProjects"><li><a href="https://savaka2.github.io/scratch-extensions/index.html">Scratch Extensions</a></li><li><a href="https://savaka2.github.io/ext-open/index.html">Ext Open</a></li><li><a href="https://savaka2.github.io/scratch-extensions-directory/index.html">Scratch Extensions Directory</a></li></ul><p><a href="javascript:showMore();">Show more</a></p><div id="morepages" style="display:none"><ul id="ssMore"><li><a href="https://savaka2.github.io/something/index.html">Something</a></li><li><a href="https://savaka2.github.io/letterboxing/index.html">Letterboxing</a></li></ul></div><p><a href="javascript:switchSite();">Close siteswitcher</a></p></div>
 	<main>
 	<h1>JoshieScript Online</h1>
 	<p>This is not finished<!-- replace with description --></p>
 	<p>Reload the page if you want to use it again</p>
-	<div id="forms"><input type="text" id="in" placeholder="Paste exported code"><button onclick="go(1);">Submit</button></div>
+	<div id="forms"><input id="in" placeholder="Paste exported code" type="text"><button onclick="go(1);">Submit</button></div>
 	<div id="console" style="font-family:monospace"></div>
 	</main>
-</body>
-</html>
+
+
+</body></html>
