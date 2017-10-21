@@ -1,0 +1,1 @@
+jump;4;out;"bad";out;"okay";input;type some text;1;out;1;add;4;7;2;sub;/2;2;3;mult;5;/3;4;div;/4;3;5;mov;6;5;set;7;brrr;out;6;out;7;if;/5;=;15;out;"good";end;if;8;>;7;out;"also good";end;if;/4;<;37;out;"this bad";end;wait;5;out;"finish";
